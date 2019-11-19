@@ -12,6 +12,7 @@
         <module>weiyun-api-gateway</module>
         <module>weiyun-register</module>
         <module>weiyun-common</module>
+        <module>weiyun-user</module>
     </modules>
 
     <parent>
