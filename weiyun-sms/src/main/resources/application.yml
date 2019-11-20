@@ -1,0 +1,16 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: sms-service
+  rabbitmq:
+    host: 192.168.157.200
+    username: wlkg
+    password: 123456
+    virtual-host: /wlkg
+wy:
+  sms:
+    accessKeyId: LTAI4FrVzLVngymhxzdiLCyb # 你自己的accessKeyId
+    accessKeySecret: FCqRmuUHdPR5E7TRGX7lX6zSfCWsUs # 你自己的AccessKeySecret
+    signName: 窝里快商城 # 签名名称
+    verifyCodeTemplate: SMS_174028375 # 模板名称

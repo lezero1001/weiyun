@@ -14,6 +14,7 @@
         <module>weiyun-common</module>
         <module>weiyun-config-server</module>
         <module>weiyun-user</module>
+        <module>weiyun-sms</module>
     </modules>
 
     <parent>
