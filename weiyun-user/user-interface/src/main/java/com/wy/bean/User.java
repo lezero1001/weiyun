@@ -2,10 +2,7 @@ package com.wy.bean;
 
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Table(name = "tb_user")
 @Data
@@ -18,11 +15,21 @@ public class User {
     private String password;
     private String salt;
     private String email;
-    private String company_name;
-    private String other_phone;
-    private String type1;
-    private String type2;
-    private String vip;
-    private String live_status;
+    @Column(name = "other_phone")
+    private String otherPhone;
+    private Integer type1;
+    private Integer type2;
+    private Integer vip;
+    private Integer live_status;
     private String idcard;
+    @Column(name = "company_name")
+    private String companyName;
+    @Column(name = "company_image")
+    private String companyImage;// 公司营业执照
+    @Column(name = "contacts_name")
+    private String contactsName; // 联系人姓名
+    @Column(name = "contacts_idcard")
+    private String contactsIdcard;
+    @Column(name = "contacts_phone")
+    private String contactsPhone;
 }

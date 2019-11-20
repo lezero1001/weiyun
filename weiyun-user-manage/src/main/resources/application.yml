@@ -1,0 +1,35 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: user-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.100.198.53:3306/weiyun
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+  #redis:
+    #host: 192.168.133.110
+#  rabbitmq:
+#    host: 192.168.133.110
+#    username: wlkg
+#    password: 123456
+#    virtual-host: /wlkg
+#    template:
+#      retry:
+#        enabled: true
+#        initial-interval: 10000ms
+#        max-interval: 210000ms
+#        multiplier: 2
+#    publisher-confirms: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}.${server.port}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10

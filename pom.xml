@@ -14,6 +14,7 @@
         <module>weiyun-common</module>
         <module>weiyun-config-server</module>
         <module>weiyun-user</module>
+        <module>weiyun-user-manage</module>
     </modules>
 
     <parent>
@@ -31,7 +32,6 @@
         <mapper.starter.version>2.0.2</mapper.starter.version>
         <mysql.version>5.1.37</mysql.version>
         <pageHelper.starter.version>1.2.3</pageHelper.starter.version>
-        <wlkg.latest.version>1.0-SNAPSHOT</wlkg.latest.version>
         <fastDFS.client.version>1.26.1-RELEASE</fastDFS.client.version>
     </properties>
 
