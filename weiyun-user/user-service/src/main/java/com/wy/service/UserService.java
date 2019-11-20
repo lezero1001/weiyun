@@ -2,7 +2,7 @@ package com.wy.service;
 
 import com.wy.bean.User;
 import com.wy.common.enums.ExceptionEnums;
-import com.wy.common.exception.WlkgException;
+import com.wy.common.exception.WyException;
 import com.wy.common.utils.CodecUtils;
 import com.wy.common.utils.NumberUtils;
 import com.wy.mapper.UserMapper;
@@ -34,12 +34,12 @@ public class UserService {
         user.setName(username);
         User retUser = userMapper.selectOne(user);
         if(retUser == null){
-            throw new WlkgException(ExceptionEnums.INVALID_USERNAME_PASSWORD);
+            throw new WyException(ExceptionEnums.INVALID_USERNAME_PASSWORD);
         }
 
         String md5Pwd = CodecUtils.md5Hex(password,retUser.getSalt());
         if(!retUser.getPassword().equals(md5Pwd)){
-            throw new WlkgException(ExceptionEnums.INVALID_USERNAME_PASSWORD);
+            throw new WyException(ExceptionEnums.INVALID_USERNAME_PASSWORD);
         }else {
             return retUser;
         }
@@ -70,7 +70,7 @@ public class UserService {
         String redisCode = redisTemplate.opsForValue().get(prefix);
         //判断验证码是否正确
         if(!code.equals(redisCode)){
-            throw new WlkgException(ExceptionEnums.CODE_CHECK_ERROR);
+            throw new WyException(ExceptionEnums.USER_NOT_FOUND);
         }
         //生成盐
         String salt = CodecUtils.generateSalt();
