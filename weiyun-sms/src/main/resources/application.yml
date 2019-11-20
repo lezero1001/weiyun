@@ -10,7 +10,7 @@ spring:
     virtual-host: /wlkg
 wy:
   sms:
-    accessKeyId: LTAI4FrVzLVngymhxzdiLCyb # 你自己的accessKeyId
-    accessKeySecret: FCqRmuUHdPR5E7TRGX7lX6zSfCWsUs # 你自己的AccessKeySecret
-    signName: 窝里快商城 # 签名名称
-    verifyCodeTemplate: SMS_174028375 # 模板名称
+    accessKeyId: LTAI4FibdDj17mSxG1gmi87K # 你自己的accessKeyId
+    accessKeySecret: 3Y1rkKpjKiykhlVyqhWaLhMQRApk2s  # 你自己的AccessKeySecret
+    signName: 危运三人管理中心 # 签名名称
+    verifyCodeTemplate: 危运短信验证码 # 模板名称
