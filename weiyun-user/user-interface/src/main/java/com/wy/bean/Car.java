@@ -20,8 +20,8 @@ public class Car {
     private Long species_id;
     private String car_card;
     private String car_image;
-    private String allowed_driver;
-    private String driver;
+    private String allowed_driver;//道路运营许可证图片
+    private String driver;//随从司机
     private String driver_phone;
     private String driver_idcard;
     private String idcard_front_image;

@@ -10,7 +10,7 @@ spring:
       server:
         native:
           #指定配置文件的存放位置
-          search-locations: classpath:${config-location}
+          search-locations: classpath:pro
       fail-fast: true #快速失败
         #git:
           #password:

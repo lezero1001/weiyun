@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class WlkgException extends RuntimeException {
+public class WyException extends RuntimeException {
     private ExceptionEnums exceptionEnums;
 }
