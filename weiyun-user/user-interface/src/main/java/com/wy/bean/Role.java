@@ -1,0 +1,28 @@
+package com.wy.bean;
+
+import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Data
+@Table(name = "tb_role")
+public class Role implements GrantedAuthority {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String role;
+
+    @Override
+    public String getAuthority() {
+        return this.role;
+    }
+    @Override
+    public String toString() {
+        return role;
+    }
+}

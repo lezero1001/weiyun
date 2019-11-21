@@ -1,16 +1,16 @@
 server:
-  port: 8085
+  port: 9004
 spring:
   application:
     name: sms-service
   rabbitmq:
-    host: 192.168.157.200
-    username: wlkg
-    password: 123456
-    virtual-host: /wlkg
+    host: 47.100.178.53
+    username: weiyun
+    password: weiyun
+    virtual-host: /weiyun
 wy:
   sms:
     accessKeyId: LTAI4FibdDj17mSxG1gmi87K # 你自己的accessKeyId
     accessKeySecret: 3Y1rkKpjKiykhlVyqhWaLhMQRApk2s  # 你自己的AccessKeySecret
-    signName: 危运三人管理中心 # 签名名称
-    verifyCodeTemplate: 危运短信验证码 # 模板名称
+    signName: 微云智能管理平台 # 签名名称
+    verifyCodeTemplate: SMS_177549309 # 模板名称

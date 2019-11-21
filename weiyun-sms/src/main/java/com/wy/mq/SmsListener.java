@@ -26,7 +26,7 @@ public class SmsListener {
     private SmsProperties prop;
 
     /*发送短信验证码*/
-    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = "sms.verify.code.queue",durable = "true"),exchange = @Exchange(value = "wlkg.sms.exchange",type = ExchangeTypes.TOPIC,ignoreDeclarationExceptions = "true"),key = {"sms.verify.code"}))
+    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = "sms.verify.code.queue",durable = "true"),exchange = @Exchange(value = "wy.sms.exchange",type = ExchangeTypes.TOPIC,ignoreDeclarationExceptions = "true"),key = {"sms.verify.code"}))
     public void listenSms(Map<String,String > msg){
         if(CollectionUtils.isEmpty(msg)){
             //放弃处理

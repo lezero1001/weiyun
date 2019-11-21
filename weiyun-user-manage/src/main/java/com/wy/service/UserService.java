@@ -65,4 +65,17 @@ public class UserService {
         return pageResult;
     }
 
+
+    public void userOperation(Long userId,Integer liveStatus) {
+        User user = new User();
+        user.setId(userId);
+        // 判断用户状态是否存在
+        if (liveStatus == null){
+            // 不存在，修改密码
+            user.setPassword("weiyun");
+        }
+        // 存在，修改用户状态
+        user.setLiveStatus(liveStatus);
+        updateUser(user);
+    }
 }

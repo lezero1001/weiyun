@@ -2,12 +2,16 @@ package com.wy.bean;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Table(name = "tb_user")
 @Data
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,4 +39,55 @@ public class User {
     private String contactsIdcard;
     @Column(name = "contacts_phone")
     private String contactsPhone;
+    @Column(name = "role_id")
+    private Integer roleId;
+    //一个人可以关联多个角色
+    //JoinTable:指明两个表中间的关联表.
+    //name:中间中表中关联的主键名称
+    //referencedColumnName:对应被关联的那个表的主键名称
+    //注意;joinColumns与inverseJoinColumns的区别.
+    //cascade:级联操作:级联更新/删除;
+    //fetch:对象的加载策略:饥饿模式和延迟加载模式.
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //JoinTable:设置多表关联时连接的表
+    @JoinTable(name = "tb_role",
+            joinColumns = @JoinColumn(name = "id", referencedColumnName = "role_id"))
+    private List<Role> authorities;
+
+    public void setAuthorities(List<Role> authorities){
+        this.authorities = authorities;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.authorities;
+    }
+
+    public void setUsername(String phone) {
+        this.phone = phone;
+    }
+    @Override
+    public String getUsername() {
+        return phone;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

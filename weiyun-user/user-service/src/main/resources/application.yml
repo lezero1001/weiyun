@@ -3,18 +3,19 @@ server:
 spring:
   application:
     name: user-service
+  thymeleaf:
+    cache: false
   datasource:
     url: jdbc:mysql://47.100.178.53:3306/weiyun
     username: root
     password: 123456
-    driver-class-name: com.mysql.jdbc.Driver
   redis:
-    host:
+    host: 47.100.178.53
   rabbitmq:
-    host:
-    username: wlkg
-    password: 123456
-    virtual-host: /wlkg
+    host: 47.100.178.53
+    username: weiyun
+    password: weiyun
+    virtual-host: /weiyun
     template:
       retry:
         enabled: true
@@ -26,7 +27,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:10086/eureka
+      defaultZone: http://admin:123456@127.0.0.1:10086/eureka
   instance:
     prefer-ip-address: true
     ip-address: 127.0.0.1
