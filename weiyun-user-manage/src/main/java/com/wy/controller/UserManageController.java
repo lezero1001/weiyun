@@ -19,7 +19,7 @@ public class UserManageController {
      * @param user
      * @return
      */
-    @PostMapping("/UM/add")
+    @PostMapping("/add")
     public ResponseEntity<Void> addUser(User user){
         userService.addUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -30,7 +30,7 @@ public class UserManageController {
      * @param user
      * @return
      */
-    @PutMapping("/UM/update")
+    @PutMapping("/update")
     public ResponseEntity<Void> updateUser(User user){
         userService.updateUser(user);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -41,7 +41,7 @@ public class UserManageController {
      * @param userId
      * @return
      */
-    @DeleteMapping("/UM/delete")
+    @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteUser(Long userId){
         userService.deleteUser(userId);
         return ResponseEntity.status(HttpStatus.OK).build();
@@ -52,21 +52,23 @@ public class UserManageController {
      * @param page  页数
      * @param size  每页数据量
      * @param vip   0：不是vip 1：是vip
-     * @param live_status   0：封号状态  1：活跃状态
+     * @param liveStatus   0：封号状态  1：活跃状态
      * @param type1 0：车主    1：货主
      * @param type2 0：个人    1：企业
      * @param orderBy desc：降序    asc：升序
+     * @param key 模糊查询关键字
      * @return
      */
-    @GetMapping("/UM/list")
+    @GetMapping("/list")
     public ResponseEntity<PageResult<User>> userList(@RequestParam(value = "page",defaultValue = "1") Integer page,
                                                      @RequestParam(value = "size",defaultValue = "10")Integer size,
                                                      @RequestParam(value = "vip",defaultValue = "0")Integer vip,
-                                                     @RequestParam(value = "live_status",defaultValue = "1")Integer live_status,
+                                                     @RequestParam(value = "liveStatus",defaultValue = "1")Integer liveStatus,
                                                      @RequestParam(value = "type1",defaultValue = "0")Integer type1,
                                                      @RequestParam(value = "type2",defaultValue = "0")Integer type2,
-                                                     @RequestParam(value = "orderBy",defaultValue = "desc")String orderBy){
-        PageResult<User> pageResult = userService.userList(page, size, vip,orderBy, live_status, type1, type2);
+                                                     @RequestParam(value = "orderBy",defaultValue = "asc")String orderBy,
+                                                     @RequestParam(value = "key",required = false)String key){
+        PageResult<User> pageResult = userService.userList(page, size, vip,orderBy, liveStatus, type1, type2,key);
         return ResponseEntity.ok(pageResult);
     }
 

@@ -1,6 +1,7 @@
 package com.wy.bean;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
@@ -20,8 +21,10 @@ public class User {
     private Integer type1;
     private Integer type2;
     private Integer vip;
-    private Integer live_status;
-    private String idcard;
+    @Column(name = "live_status")
+    private Integer liveStatus;//账号状态
+    @Column(name = "idcard")
+    private String idCard;
     @Column(name = "company_name")
     private String companyName;
     @Column(name = "company_image")

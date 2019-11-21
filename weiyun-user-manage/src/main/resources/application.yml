@@ -2,15 +2,17 @@ server:
   port: 9001
 spring:
   application:
-    name: user-service
+    name: um-service
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.100.198.53:3306/weiyun
+    url: jdbc:mysql://47.100.178.53:3306/weiyun
     username: root
     password: 123456
-    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+
   #redis:
-    #host: 192.168.133.110
+  #host: 192.168.133.110
 #  rabbitmq:
 #    host: 192.168.133.110
 #    username: wlkg
@@ -26,7 +28,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:10086/eureka
+      defaultZone: http://admin:123456@127.0.0.1:10086/eureka
   instance:
     prefer-ip-address: true
     ip-address: 127.0.0.1

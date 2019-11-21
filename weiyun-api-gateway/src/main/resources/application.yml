@@ -25,10 +25,11 @@ management:
 zuul:
   prefix: /api # 添加路由前缀
   retryable: true
-  #routes:
   host:
     connect-timeout-millis: 2000
     socket-timeout-millis: 2000
+  routes:
+    um-service: /UM/**
 
 
 ribbon:
