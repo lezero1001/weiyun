@@ -16,6 +16,7 @@
         <module>weiyun-user</module>
         <module>weiyun-sms</module>
         <module>weiyun-user-manage</module>
+        <module>weiyun-business</module>
     </modules>
 
     <parent>
