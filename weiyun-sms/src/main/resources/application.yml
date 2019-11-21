@@ -10,7 +10,7 @@ spring:
     virtual-host: /weiyun
 wy:
   sms:
-    accessKeyId: LTAI4FibdDj17mSxG1gmi87K # 你自己的accessKeyId
-    accessKeySecret: 3Y1rkKpjKiykhlVyqhWaLhMQRApk2s  # 你自己的AccessKeySecret
+    accessKeyId: LTAI4FsEJo7uoqF26GQSLRb4 # 你自己的accessKeyId
+    accessKeySecret: j19ULHZXtfnZvjrl2iw6zMmzhHc8eH  # 你自己的AccessKeySecret
     signName: 微云智能管理平台 # 签名名称
     verifyCodeTemplate: SMS_177549309 # 模板名称

@@ -16,7 +16,7 @@ public class UserController {
     private UserService userService;
 
     /**发送手机验证码*/
-    @PostMapping("/code")
+    @GetMapping("/code")
     public ResponseEntity<Void> sendVerifyCode(String phone) {
         Boolean boo = this.userService.sendVerifyCode(phone);
         return ResponseEntity.ok(null);
@@ -38,8 +38,8 @@ public class UserController {
     }
 
     /**注册*/
-    @PutMapping("/register")
-    public ResponseEntity<Void> register(@Valid User user, @RequestParam("code") String code){
+    @GetMapping("/register")
+    public ResponseEntity<Void> register(User user, @RequestParam("code") String code){
         this.userService.register(user, code);
         return ResponseEntity.ok(null);
     }
