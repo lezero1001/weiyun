@@ -13,10 +13,13 @@ public class AdminService {
     @Autowired
     private AdminMapper adminMapper;
 
-    public void login(Admin admin) {
-        Admin res = adminMapper.selectOne(admin);
-        if (res == null) {
-            new WyException(ExceptionEnums.ADMIN_NOT_FOUND);
+    public Boolean login(Admin admin) {
+        try {
+            Admin res = adminMapper.selectOne(admin);
+            return res != null;
+        }catch (Exception e){
+            throw new WyException(ExceptionEnums.ADMIN_NOT_FOUND);
         }
+
     }
 }

@@ -29,10 +29,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/user/**")
                 //.hasAuthority("ROLE_USER");
-                .hasAnyAuthority("carOwner,goodOwner")
+                .hasAnyAuthority("CAROWNER,GOODOWNER")
                 .antMatchers("/blogs/**")
                 //.hasRole("USER");
-                .hasAnyRole("generalAdmin", "superAdmin")
+                .hasAnyRole("GENERALADMIN", "SUPERADMIN")
                 .and() //转折
                 .formLogin() //设置登录相关信息
                 .loginPage("/login")
@@ -42,7 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/401")
                 .and()
                 .logout() //对退出进行设置
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+                .and()
+                .csrf().disable();
+
     }
 
     //进行认证授权的方法

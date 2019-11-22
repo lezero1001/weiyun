@@ -17,9 +17,6 @@ public class PasswordUtil {
         return encoder.matches(raw, pwd);
     }
 
-    public static void main(String[] args) {
-        String encode = encode("123");
-        System.out.println("encode=" + encode);
-    }
+
 
 }

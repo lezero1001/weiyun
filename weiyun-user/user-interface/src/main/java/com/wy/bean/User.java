@@ -63,12 +63,25 @@ public class User implements UserDetails {
         return this.authorities;
     }
 
+    public void setId(Long id){
+        this.id = id;
+    }
+    public Long getId(){
+       return this.id;
+    }
     public void setUsername(String phone) {
         this.phone = phone;
     }
     @Override
     public String getUsername() {
         return phone;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override

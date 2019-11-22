@@ -9,15 +9,19 @@ import com.wy.mapper.UserMapper;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Service
-public class UserService {
+public class UserService  implements UserDetailsService {
     @Autowired
     private UserMapper userMapper;
     @Autowired
@@ -83,5 +87,11 @@ public class UserService {
             //删除redis中的验证码
             redisTemplate.delete(prefix);
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userMapper.selectOneByExample(username);
+
     }
 }

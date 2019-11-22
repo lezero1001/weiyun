@@ -1,7 +1,9 @@
 package com.wy.controller;
 
+import com.wy.bean.Admin;
 import com.wy.bean.User;
 import com.wy.common.bean.PageResult;
+import com.wy.service.AdminService;
 import com.wy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,8 @@ public class UserManageController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AdminService adminService;
 
     /**
      * 添加个人用户或企业用户，返回状态码201
@@ -88,6 +92,11 @@ public class UserManageController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<Boolean> login(@RequestBody Admin admin){
+        Boolean boo = adminService.login(admin);
+        return ResponseEntity.ok(boo);
+    }
 
 
 }
