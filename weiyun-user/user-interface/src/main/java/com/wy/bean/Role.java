@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+@Data
 @Table(name = "tb_role")
 public class Role implements GrantedAuthority {
 

@@ -63,14 +63,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //BCryptPasswordEncoder:属于对称加密算法.des/3des/bcrypt等都是对称加密.
         //注意:新版本的spring-security中,必须明确指明要用的密码加密方案,否则:
         //IllegalArgumentException: There is no PasswordEncoder mapped for the id "null"
-        auth.inMemoryAuthentication().
+        /*auth.inMemoryAuthentication().
                 passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("weiyun")
                 .password(new BCryptPasswordEncoder().encode("123456"))
-                .authorities("ROLE_CAROWNER");
+                .authorities("ROLE_CAROWNER");*/
 
         //2.关联数据库,查询对应的用户信息.
-        //auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
 
     }
 }

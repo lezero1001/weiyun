@@ -15,7 +15,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String phone;
+    @Column(name = "phone")
+    private String username;
     private String password;
     private String salt;
     private String email;
@@ -46,11 +47,8 @@ public class User implements UserDetails {
     //注意;joinColumns与inverseJoinColumns的区别.
     //cascade:级联操作:级联更新/删除;
     //fetch:对象的加载策略:饥饿模式和延迟加载模式.
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //JoinTable:设置多表关联时连接的表
-    @JoinTable(name = "tb_user_role",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+
+    @Transient
     private List<Role> authorities;
 
     public void setAuthorities(List<Role> authorities){
@@ -68,17 +66,17 @@ public class User implements UserDetails {
     public Long getId(){
        return this.id;
     }
-    public void setUsername(String phone) {
-        this.phone = phone;
+    public void setUsername(String username) {
+        this.username = username;
     }
-    @Override
+
     public String getUsername() {
-        return phone;
+        return this.username;
     }
     public void setPassword(String password) {
         this.password = password;
     }
-    @Override
+
     public String getPassword() {
         return password;
     }

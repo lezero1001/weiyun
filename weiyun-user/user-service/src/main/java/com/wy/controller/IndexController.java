@@ -46,7 +46,7 @@ public class IndexController {
     @GetMapping("/user/info")
     public String showInfo() {
         //有个默认的逻辑视图名: /templates/user/user.html
-        return "/user/user";
+        return "user/user";
     }
 
 }

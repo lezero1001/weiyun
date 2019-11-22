@@ -1,5 +1,6 @@
 package com.wy.service;
 
+import com.wy.bean.Role;
 import com.wy.bean.User;
 import com.wy.common.enums.ExceptionEnums;
 import com.wy.common.exception.WyException;
@@ -35,7 +36,7 @@ public class UserService  implements UserDetailsService {
     /**用户登陆*/
     public User queryUser(String username, String password) {
         User user = new User();
-        user.setPhone(username);
+        user.setUsername(username);
         User retUser = userMapper.selectOne(user);
         if(retUser == null){
             throw new WyException(ExceptionEnums.INVALID_USERNAME_PASSWORD);
@@ -70,7 +71,7 @@ public class UserService  implements UserDetailsService {
 
     /**注册*/
     public void register(User user, String code) {
-        String prefix = KEY_PREFIX + user.getPhone();
+        String prefix = KEY_PREFIX + user.getUsername();// 用电话作为username
         String redisCode = redisTemplate.opsForValue().get(prefix);
         //判断验证码是否正确
         if(!code.equals(redisCode)){
@@ -92,9 +93,14 @@ public class UserService  implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println(username);
-        User user = userMapper.selectOneByExample(username);
-        System.out.println(user);
-        return user;
+        User user =new User();
+        user.setUsername(username);
+        User user1 = userMapper.selectOne(user);
+        System.out.println(user1);
+        List<Role> roles = userMapper.selectRoles(user1.getId());
+        user1.setAuthorities(roles);
+        System.out.println(user1);
+        return user1;
 
     }
 }

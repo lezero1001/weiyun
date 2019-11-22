@@ -22,7 +22,7 @@ public class WyTest {
         user.setVip(0);
         user.setEmail("243243@qq.com");
         user.setIdCard("4345454324544");
-        user.setPhone("18023453456");
+        user.setUsername("18023453456");
         user.setPassword("123456");
         user.setType1(0);
         user.setType2(0);
