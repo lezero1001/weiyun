@@ -31,7 +31,7 @@ public class UserService {
     /**用户登陆*/
     public User queryUser(String username, String password) {
         User user = new User();
-        user.setName(username);
+        user.setPhone(username);
         User retUser = userMapper.selectOne(user);
         if(retUser == null){
             throw new WyException(ExceptionEnums.INVALID_USERNAME_PASSWORD);

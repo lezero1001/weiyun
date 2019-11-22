@@ -19,8 +19,8 @@
 指定一个模板内一部分代码为一个片段，
 然后在其它的页面中用th:include或th:substituteby进行包含。-->
 <div th:fragment="logout" sec:authorize="isAuthenticated()">
-    登录用户: <span sec:authentication="name"></span> |
-    用户角色: <span sec:authentication="principal.authorities"></span>
+    登录用户: <span sec:authentication="${model.user.phone}"></span> |
+    用户角色: <span sec:authentication="${model.user.authorities}"></span>
     <hr/>
     <div>
         <form action="#" th:action="@{/logout}" method="post">

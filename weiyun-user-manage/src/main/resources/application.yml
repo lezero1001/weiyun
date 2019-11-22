@@ -2,7 +2,7 @@ server:
   port: 9001
 spring:
   application:
-    name: um-service
+    name: admin-service
   datasource:
     url: jdbc:mysql://47.100.178.53:3306/weiyun
     username: root

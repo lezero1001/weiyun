@@ -5,8 +5,10 @@ import com.wy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -29,12 +31,13 @@ public class UserController {
      * @return
      */
     @GetMapping("/query")
-    public ResponseEntity<User> queryUser(
+    public ModelAndView queryUser(
             @RequestParam("username") String username,
-            @RequestParam("password") String password
-    ) {
+            @RequestParam("password") String password,
+            Model model) {
         User user = this.userService.queryUser(username, password);
-        return ResponseEntity.ok(user);
+        model.addAttribute(user);
+        return new ModelAndView("/user/user","model",model);
     }
 
     /**注册*/

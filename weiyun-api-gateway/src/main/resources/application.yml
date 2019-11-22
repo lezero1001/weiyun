@@ -29,7 +29,7 @@ zuul:
     connect-timeout-millis: 2000
     socket-timeout-millis: 2000
   routes:
-    um-service: /UM/**
+    admin-service: /admin/**
 
 
 ribbon:
