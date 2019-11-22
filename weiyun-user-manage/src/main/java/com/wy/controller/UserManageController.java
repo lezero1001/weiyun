@@ -25,10 +25,10 @@ public class UserManageController {
      */
     @PostMapping("/add")
     public ResponseEntity<Void> addUser(User user){
-        switch (user.getType1()){
+        /*switch (user.getType1()){
             case 0:user.setRoleId(3);break;// 身份为车主，赋予权限为车主
             case 1:user.setRoleId(4);break;// 身份为货主，赋予权限为货主
-        }
+        }*/
         userService.addUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

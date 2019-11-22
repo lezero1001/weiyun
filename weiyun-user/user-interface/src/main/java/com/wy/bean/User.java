@@ -1,7 +1,6 @@
 package com.wy.bean;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -39,8 +38,7 @@ public class User implements UserDetails {
     private String contactsIdcard;
     @Column(name = "contacts_phone")
     private String contactsPhone;
-    @Column(name = "role_id")
-    private Integer roleId;
+
     //一个人可以关联多个角色
     //JoinTable:指明两个表中间的关联表.
     //name:中间中表中关联的主键名称
@@ -50,8 +48,9 @@ public class User implements UserDetails {
     //fetch:对象的加载策略:饥饿模式和延迟加载模式.
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //JoinTable:设置多表关联时连接的表
-    @JoinTable(name = "tb_role",
-            joinColumns = @JoinColumn(name = "id", referencedColumnName = "role_id"))
+    @JoinTable(name = "tb_user_role",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> authorities;
 
     public void setAuthorities(List<Role> authorities){

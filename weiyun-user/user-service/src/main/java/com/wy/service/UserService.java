@@ -91,7 +91,10 @@ public class UserService  implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userMapper.selectOneByExample(username);
+        System.out.println(username);
+        User user = userMapper.selectOneByExample(username);
+        System.out.println(user);
+        return user;
 
     }
 }

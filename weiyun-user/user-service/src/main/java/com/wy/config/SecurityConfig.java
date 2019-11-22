@@ -1,5 +1,6 @@
 package com.wy.config;
 
+import com.wy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserService userService;
 
     //对要访问的页面资源进行授权限制
     @Override
@@ -29,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/user/**")
                 //.hasAuthority("ROLE_USER");
-                .hasAnyAuthority("CAROWNER,GOODOWNER")
+                .hasAnyAuthority("CAROWNER","GOODOWNER")
                 .antMatchers("/blogs/**")
                 //.hasRole("USER");
                 .hasAnyRole("GENERALADMIN", "SUPERADMIN")
@@ -68,7 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .roles("USER");
 
         //2.关联数据库,查询对应的用户信息.
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
 
     }
 }

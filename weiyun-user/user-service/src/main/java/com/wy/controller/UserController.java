@@ -30,7 +30,7 @@ public class UserController {
      * @param password
      * @return
      */
-    @GetMapping("/query")
+    /*@GetMapping("/query")
     public ModelAndView queryUser(
             @RequestParam("username") String username,
             @RequestParam("password") String password,
@@ -38,7 +38,7 @@ public class UserController {
         User user = this.userService.queryUser(username, password);
         model.addAttribute(user);
         return new ModelAndView("/user/user","model",model);
-    }
+    }*/
 
     /**注册*/
     @PostMapping("/register")
