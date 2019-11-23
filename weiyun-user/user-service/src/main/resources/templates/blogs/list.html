@@ -11,16 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="blog: ${model.blogs}">
-                <td th:text="${blog.id}"></td>
-                <td th:text="${blog.title}"></td>
-                <td th:text="${blog.content}"></td>
-                <td>
-                    <div >
-                        <a th:href="@{'/blogs/del/' + ${blog.id}}">删除</a>
-                    </div>
-                </td>
-            </tr>
+            此页面只有GOODSOWNER能看
         </tbody>
     </table>
 </div>

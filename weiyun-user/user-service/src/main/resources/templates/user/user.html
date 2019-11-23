@@ -10,9 +10,10 @@
     <!--th:substituteby包含index.html页面的名为logout的fragment片段-->
     <div th:substituteby="index::logout"></div>
 
-    <h1>这个界面是被保护的界面,具有USER身份能看到本页面!</h1>
+    <h1>这个界面是被保护的界面,具有CAROWNER身份能看到本页面!</h1>
 
     <p><a href="/index" th:href="@{/index}">返回首页</a></p>
+    <p><a  href="/blogs" th:href="@{/blogs}">管理博客</a></p>
 
 </body>
 </html>

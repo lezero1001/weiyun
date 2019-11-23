@@ -18,7 +18,6 @@ public class User implements UserDetails {
     @Column(name = "phone")
     private String username;
     private String password;
-    private String salt;
     private String email;
     @Column(name = "other_phone")
     private String otherPhone;

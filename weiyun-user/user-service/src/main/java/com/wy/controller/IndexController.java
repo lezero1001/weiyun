@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/")
     public String root() {
@@ -47,6 +45,11 @@ public class IndexController {
     public String showInfo() {
         //有个默认的逻辑视图名: /templates/user/user.html
         return "user/user";
+    }
+    @GetMapping("/blogs")
+    public String blogs() {
+        //有个默认的逻辑视图名: /templates/user/user.html
+        return "blogs/list";
     }
 
 }

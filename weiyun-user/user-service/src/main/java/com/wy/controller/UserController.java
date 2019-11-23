@@ -24,21 +24,6 @@ public class UserController {
         return ResponseEntity.ok(null);
     }
 
-    /**
-     * 根据用户名和密码查询用户
-     * @param username
-     * @param password
-     * @return
-     */
-    /*@GetMapping("/query")
-    public ModelAndView queryUser(
-            @RequestParam("username") String username,
-            @RequestParam("password") String password,
-            Model model) {
-        User user = this.userService.queryUser(username, password);
-        model.addAttribute(user);
-        return new ModelAndView("/user/user","model",model);
-    }*/
 
     /**注册*/
     @PostMapping("/register")

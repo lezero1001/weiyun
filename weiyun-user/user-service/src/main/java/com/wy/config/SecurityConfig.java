@@ -28,14 +28,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().
                     authorizeRequests()
                  //对页面|资源请求进行认证授权操作
-                .antMatchers("/css/**", "/index","/login")
+                .antMatchers("/dist/css/bootstrap.css", "/index")
                 .permitAll()
                 .antMatchers("/user/**")
                 //.hasAuthority("ROLE_USER");
-                .hasAnyAuthority("ROLE_CAROWNER","ROLE_GOODOWNER")
+                .hasAnyAuthority("ROLE_CAROWNER","ROLE_GOODSOWNER")
                 .antMatchers("/blogs/**")
                 //.hasRole("USER");
-                .hasAnyRole("GENERALADMIN", "SUPERADMIN")
+                .hasAnyRole("GOODSOWNER")
                 .and() //转折
                 .formLogin() //设置登录相关信息
                 .loginPage("/login")
@@ -67,10 +67,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("weiyun")
                 .password(new BCryptPasswordEncoder().encode("123456"))
-                .authorities("ROLE_CAROWNER");*/
+                .authorities("ROLE_GOODSOWNER");*/
 
         //2.关联数据库,查询对应的用户信息.
-        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
+         auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
 
     }
 }

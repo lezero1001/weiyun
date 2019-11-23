@@ -7,6 +7,7 @@ import com.wy.common.exception.WyException;
 import com.wy.common.utils.CodecUtils;
 import com.wy.common.utils.NumberUtils;
 import com.wy.mapper.UserMapper;
+import com.wy.util.PasswordUtil;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,22 +34,6 @@ public class UserService  implements UserDetailsService {
 
     static final String KEY_PREFIX = "user:code:phone:";
 
-    /**用户登陆*/
-    public User queryUser(String username, String password) {
-        User user = new User();
-        user.setUsername(username);
-        User retUser = userMapper.selectOne(user);
-        if(retUser == null){
-            throw new WyException(ExceptionEnums.INVALID_USERNAME_PASSWORD);
-        }
-
-        String md5Pwd = CodecUtils.md5Hex(password,retUser.getSalt());
-        if(!retUser.getPassword().equals(md5Pwd)){
-            throw new WyException(ExceptionEnums.INVALID_USERNAME_PASSWORD);
-        }else {
-            return retUser;
-        }
-    }
 
     /**发送短信*/
     public Boolean sendVerifyCode(String phone) {
@@ -71,17 +56,20 @@ public class UserService  implements UserDetailsService {
 
     /**注册*/
     public void register(User user, String code) {
-        String prefix = KEY_PREFIX + user.getUsername();// 用电话作为username
+        String prefix = KEY_PREFIX + user.getUsername();// 用phone作为username
         String redisCode = redisTemplate.opsForValue().get(prefix);
         //判断验证码是否正确
         if(!code.equals(redisCode)){
-            throw new WyException(ExceptionEnums.USER_NOT_FOUND);
+            throw new WyException(ExceptionEnums.CODE_ERROR);
         }
         //生成盐
-        String salt = CodecUtils.generateSalt();
+        /*String salt = CodecUtils.generateSalt();
         user.setSalt(salt);
         //对密码加密
-        user.setPassword(CodecUtils.md5Hex(user.getPassword(),salt));
+        user.setPassword(CodecUtils.md5Hex(user.getPassword(),salt));*/
+        //BCryptPasswordEncoder加密
+        user.setPassword(PasswordUtil.encode(user.getPassword()));
+        user.setLiveStatus(1);
 
         //写入数据库
         if(userMapper.insert(user) == 1){
@@ -92,15 +80,13 @@ public class UserService  implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println(username);
         User user =new User();
         user.setUsername(username);
-        User user1 = userMapper.selectOne(user);
-        System.out.println(user1);
-        List<Role> roles = userMapper.selectRoles(user1.getId());
-        user1.setAuthorities(roles);
-        System.out.println(user1);
-        return user1;
+        User res = userMapper.selectOne(user);
+        List<Role> roles = userMapper.selectRoles(res.getId());
+        res.setAuthorities(roles);
+        System.out.println(res);
+        return res;
 
     }
 }
